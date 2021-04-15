@@ -6,9 +6,15 @@ import Signup from './Signup.js';
 import Login from './Login';
 import { useState } from 'react';
 import Search from './Search';
+import Detail from './Detail';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+
+// Heroic.comm 
+// heroku.com 
+// https://devcenter.heroku.com/articles/heroku-cli 
 
 function App() {
-  var [user,setUser] = useState();
+  var [user, setUser] = useState();
 
   function LoginDone(customer_data) {
     setUser(customer_data);
@@ -17,11 +23,21 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar customerdetail={user} />
-      <Login informlogin={LoginDone}/>
-      <Search/>
-      <Signup/>
-      <Home/>
+      <Router>
+        <Navbar customerdetail={user} />
+        <div className="components">
+          <Switch>
+            <Route exact path="/"><Home /></Route>
+            <Route exact path="/login"><Login informlogin={LoginDone} /></Route>
+            <Route exact path="/signup"><Signup /></Route>
+            <Route exact path="/search"><Search /></Route>
+            <Route exact path="/cake/:cakeid"><Detail /></Route>
+            <Route path="/*">
+              <Redirect to="/" />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 var cardsImage = "./cake_image_card.jpg";
 
 function Cards(props) {
@@ -13,7 +15,7 @@ function Cards(props) {
 		  <div className="card-body">
 		    <h5 className="card-title">{props.cardsName}</h5>
 		    <p className="card-text">{props.shortDetails}</p>
-		    <button className="btn btn-primary" id={props.cakeid} onClick={getProductIDFunction}>Show More Detail</button>
+		    <Link to={'/cake/'+props.cakeid}><button className="btn btn-primary" id={props.cakeid}>Show More Detail</button></Link>
 		  </div>
 		</div>
 	);
