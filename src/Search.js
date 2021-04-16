@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Cards, { CardsObject } from "./Cards";
 
+
 function Search(props) {
   let [search, setSearch] = useState([]);
+  const searchParams = window.location.search;
+  const params = new URLSearchParams(searchParams);
+  const query = params.get('q');
+
   let allcakeapi =
-    "https://apibyashu.herokuapp.com/api/searchcakes?q=" + "cheese";
+    "https://apibyashu.herokuapp.com/api/searchcakes?q=" + query;
 
   useEffect(() => {
     axios({

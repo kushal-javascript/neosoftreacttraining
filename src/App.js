@@ -38,7 +38,7 @@ function App() {
             </Route>
             <Route exact path="/login">
               <Login informlogin={LoginDone} />
-              {user && <Redirect to="/" />}
+              {/* {user && <Redirect to="/" />} */}
             </Route>
             <Route exact path="/signup">
               <Signup />

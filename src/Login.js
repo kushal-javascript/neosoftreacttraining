@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link , withRouter } from "react-router-dom";
 
 function Login(props) {
+  //console.log(props);
   var user = {};
   var [error, setError] = useState();
   var [user, setUser] = useState({});
@@ -35,6 +36,7 @@ function Login(props) {
         if (response.data) {
           setError("Login Success");
           props.informlogin(response.data.name);
+          props.history.push("/");
         } else {
           setError(response);
         }
@@ -83,4 +85,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default withRouter(Login);

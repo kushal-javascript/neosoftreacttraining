@@ -1,9 +1,23 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link, withRouter} from "react-router-dom";
 
 function Navbar(props) {
   var count = 0;
+  var [search, setSearch] = useState();
 
-  let search = function (event) {
+  let getSearch = (event) => {
+    //console.log(event.target.value);
+    setSearch(event.target.value);
+  };
+
+  let searchButton = (event) => {
+    event.preventDefault();
+    if(search){
+      props.history.push("/search?q="+search);
+    }
+  };
+
+  let searchClick = function (event) {
     event.preventDefault();
     alert("Search Button Click = " + count);
     console.log("Search Button Click = " + count);
@@ -77,12 +91,13 @@ function Navbar(props) {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            onChange={getSearch}
           />
           <Link to="/search">
             {/* <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
             <button
               className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
+              onClick={searchButton}
             >
               Search
             </button>
@@ -103,4 +118,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default withRouter(Navbar);
