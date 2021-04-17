@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link , withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 function Login(props) {
-  //console.log(props);
   var user = {};
   var [error, setError] = useState();
   var [user, setUser] = useState({});
@@ -13,7 +13,6 @@ function Login(props) {
       ...user,
       email: event.target.value,
     });
-    //user.email = event.target.value;
   };
 
   let getPassword = (event) => {
@@ -21,7 +20,6 @@ function Login(props) {
       ...user,
       password: event.target.value,
     });
-    //user.password = event.target.value;
   };
 
   let login = (event) => {
@@ -33,9 +31,14 @@ function Login(props) {
       data: user,
     }).then(
       (response) => {
-        if (response.data) {
+        if (response.data.token) {
+          localStorage.token = response.data.token
           setError("Login Success");
-          props.informlogin(response.data.name);
+          //props.informlogin(response.data.name);
+          props.dispatch({
+            type:"LOGIN",
+            payload: response.data
+          })
           props.history.push("/");
         } else {
           setError(response);
@@ -84,5 +87,5 @@ function Login(props) {
     </div>
   );
 }
-
-export default withRouter(Login);
+Login = withRouter(Login)
+export default connect()(Login);

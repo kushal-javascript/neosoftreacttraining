@@ -6,10 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import "jquery/dist/jquery.slim.min"
 import "bootstrap/dist/js/bootstrap.bundle.min"
 import "bootstrap/dist/css/bootstrap.min.css"
+import { Provider } from 'react-redux';
+import mart from './reduxstore/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={mart}>
+      <App></App>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

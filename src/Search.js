@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cards, { CardsObject } from "./Cards";
+import { useLocation } from "react-router";
 
 
 function Search(props) {
   let [search, setSearch] = useState([]);
-  const searchParams = window.location.search;
+  var location = useLocation();
+  const searchParams = props.location.search;
   const params = new URLSearchParams(searchParams);
   const query = params.get('q');
 
@@ -19,7 +21,6 @@ function Search(props) {
     }).then(
       (response) => {
         setSearch(response.data.data);
-        //console.log(response);
       },
       (error) => {
         console.log(error);
@@ -29,7 +30,6 @@ function Search(props) {
 
   return (
     <div>
-      Search Data
       <div className="container">
         <div className="row">
           {search?.length > 0 &&

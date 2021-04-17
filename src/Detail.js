@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router";
+import { useParams, withRouter } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 const star = <FontAwesomeIcon icon={faStar} />;
 const heart = <FontAwesomeIcon icon={faHeart} />;
@@ -10,6 +11,32 @@ const heart = <FontAwesomeIcon icon={faHeart} />;
 function Detail(props) {
   let params = useParams();
   let [cakedetail, setCakeDetail] = useState({});
+
+  let addToCart = (event) => {
+    event.preventDefault();
+    let apiUrl = "https://apibyashu.herokuapp.com/api/addcaketocart";
+    axios({
+      url: apiUrl,
+      method: "post",
+      headers: {
+        authtoken: localStorage.token,
+      },
+      data: { cakeid: cakedetail.cakeid,
+        name: cakedetail.name,
+        image: cakedetail.image,
+        price: cakedetail.price,
+        weight: cakedetail.weight },
+    }).then(
+      (response) => {
+        if (response) {
+          props.history.push("/cart");
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 
   useEffect(() => {
     let cakedetailapi =
@@ -101,6 +128,7 @@ function Detail(props) {
             <button
               type="button"
               class="btn btn-warning text-uppercase p-3 text-white mr-2 font-weight-bold"
+              onClick={addToCart}
             >
               Add to cart
             </button>
@@ -116,5 +144,5 @@ function Detail(props) {
     </div>
   );
 }
-
-export default Detail;
+Detail = withRouter(Detail)
+export default connect()(Detail);
