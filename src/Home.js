@@ -68,7 +68,7 @@ function Home() {
           {cakes?.length > 0 &&
             cakes.map((each, index) => {
               return (
-                <div className="col-sm">
+                <div className="col-sm" key={"cakeid-"+each.cakeid}>
                   <Cards
                     cardsName={each.name}
                     shortDetails="Product Short Details"

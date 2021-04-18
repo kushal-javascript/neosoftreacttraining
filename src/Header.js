@@ -1,28 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   withRouter,
+  useLocation,
 } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { connect, useSelector } from "react-redux";
 import mart from "./reduxstore/store";
+import axios from "axios";
 
 function HeaderSection(props) {
   var [search, setSearch] = useState();
-  const userData = mart.getState();
+  var userData = mart.getState();
+  const location = useLocation();
+  
+  useEffect(() => {
+    if (localStorage.token && !userData.user) {
+      var token = localStorage.token;
+      axios({
+        method: "get",
+        url: "https://apibyashu.herokuapp.com/api/getuserdetails",
+        headers: {
+          authtoken: token,
+        },
+      }).then(
+        (response) => {
+          props.dispatch({
+            type: "INIT_CUSTOMER_DATA",
+            payload: response.data.data,
+          });
+          props.history.push(location.pathname);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }, []);
 
   let getSearch = (event) => {
-    console.log(event.target.value);
     setSearch(event.target.value);
   };
 
   let searchButton = (event) => {
     event.preventDefault();
-    console.log(search);
     if (search) {
       props.history.push("/search?q=" + search);
     }
@@ -39,7 +64,7 @@ function HeaderSection(props) {
     <header className="header-class">
       <nav
         className="navbar navbar-expand-lg navbar-light bg-light"
-        style={{ "background-color": "#6e716e", color: "#000" }}
+        style={{ backgroundColor: "#6e716e", color: "#000" }}
       >
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {userData && userData.user ? (
@@ -47,10 +72,10 @@ function HeaderSection(props) {
               className="header links"
               style={{
                 float: "right",
-                "list-style": "none",
+                listStyle: "none",
                 display: "-webkit-inline-box",
                 margin: "0",
-                "margin-left": "auto",
+                marginLeft: "auto",
                 padding: "0",
               }}
             >
@@ -76,10 +101,10 @@ function HeaderSection(props) {
               className="header links"
               style={{
                 float: "right",
-                "list-style": "none",
+                listStyle: "none",
                 display: "-webkit-inline-box",
                 margin: "0",
-                "margin-left": "auto",
+                marginLeft: "auto",
                 padding: "0",
               }}
             >
@@ -104,7 +129,7 @@ function HeaderSection(props) {
           <a className="navbar-brand" href="/" style={{ padding: "0px" }}>
             <img
               src="./logo192.png"
-              style={{ width: "auto", "max-width": "35%" }}
+              style={{ width: "auto", maxWidth: "35%" }}
               className="d-inline-block align-middle mr-2"
             />
           </a>
@@ -115,7 +140,7 @@ function HeaderSection(props) {
             float: "right",
             display: "-webkit-inline-box",
             margin: "0",
-            "margin-left": "auto",
+            marginLeft: "auto",
           }}
         >
           <form className="form-inline my-2 my-lg-0 search">
@@ -145,5 +170,5 @@ function HeaderSection(props) {
     </header>
   );
 }
-HeaderSection = withRouter(HeaderSection)
+HeaderSection = withRouter(HeaderSection);
 export default connect()(HeaderSection);

@@ -35,7 +35,7 @@ function Search(props) {
           {search?.length > 0 &&
             search.map((each, index) => {
               return (
-                <div className="col-sm">
+                <div className="col-sm" key={"cakeid-"+each.cakeid}>
                   <Cards
                     cardsName={each.name}
                     shortDetails="Product Short Details"

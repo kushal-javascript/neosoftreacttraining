@@ -76,13 +76,13 @@ function Cart(props) {
                 );
               })}
             <tr>
-              <th colspan="4">Qty = {qty}</th>
-              <td colspan="2">Grand Total = {total}</td>
+              <th colSpan="4">Qty = {qty}</th>
+              <td colSpan="2">Grand Total = {total}</td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <th colspan="6">
+              <th colSpan="6">
                 <button className="btn btn-primary">Checkout</button>
               </th>
             </tr>
