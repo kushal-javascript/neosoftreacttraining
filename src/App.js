@@ -17,6 +17,7 @@ import Login from "./Login";
 import Search from "./Search";
 import Detail from "./Detail";
 import Cart from "./Cart";
+import Checkout from "./Checkout";
 import axios from "axios";
 import { connect } from "react-redux";
 import mart from "./reduxstore/store";
@@ -43,11 +44,11 @@ function App(props) {
         },
       }).then(
         (response) => {
+          console.log("INIT_CUSTOMER_DATA");
           props.dispatch({
             type: "INIT_CUSTOMER_DATA",
             payload: response.data.data,
           });
-          //props.history.push(location.pathname);
         },
         (error) => {
           console.log(error);
@@ -70,6 +71,7 @@ function App(props) {
             <Route path="/search" component={Search} />
             <Route exact path="/cake/:cakeid" component={Detail} />
             <Route exact path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
             <Route path="/*">
               <Redirect to="/" />
             </Route>
