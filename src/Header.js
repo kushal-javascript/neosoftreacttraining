@@ -17,30 +17,6 @@ function HeaderSection(props) {
   var [search, setSearch] = useState();
   var userData = mart.getState();
   const location = useLocation();
-  
-  useEffect(() => {
-    if (localStorage.token && !userData.user) {
-      var token = localStorage.token;
-      axios({
-        method: "get",
-        url: "https://apibyashu.herokuapp.com/api/getuserdetails",
-        headers: {
-          authtoken: token,
-        },
-      }).then(
-        (response) => {
-          props.dispatch({
-            type: "INIT_CUSTOMER_DATA",
-            payload: response.data.data,
-          });
-          props.history.push(location.pathname);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
-  }, []);
 
   let getSearch = (event) => {
     setSearch(event.target.value);
@@ -67,7 +43,7 @@ function HeaderSection(props) {
         style={{ backgroundColor: "#6e716e", color: "#000" }}
       >
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {userData && userData.user ? (
+          {props && props.user ? (
             <ul
               className="header links"
               style={{
@@ -80,7 +56,7 @@ function HeaderSection(props) {
               }}
             >
               <li>
-                <Link to="/">Welcome {userData.user.name}</Link>&nbsp;&nbsp;
+                <Link to="/">Welcome {props.user.name}</Link>&nbsp;&nbsp;
               </li>
               <li>
                 <button
@@ -171,4 +147,8 @@ function HeaderSection(props) {
   );
 }
 HeaderSection = withRouter(HeaderSection);
-export default connect()(HeaderSection);
+export default connect(function(state,action){
+  return {
+    user:state?.user
+  }
+})(HeaderSection);

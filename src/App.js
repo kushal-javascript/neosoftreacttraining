@@ -32,6 +32,29 @@ function App(props) {
     setUser(customer_data);
   };
 
+  useEffect(() => {
+    if (localStorage.token && !props.user) {
+      var token = localStorage.token;
+      axios({
+        method: "get",
+        url: "https://apibyashu.herokuapp.com/api/getuserdetails",
+        headers: {
+          authtoken: token,
+        },
+      }).then(
+        (response) => {
+          props.dispatch({
+            type: "INIT_CUSTOMER_DATA",
+            payload: response.data.data,
+          });
+          //props.history.push(location.pathname);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }, []);
   return (
     <div className="App">
       <Router>
