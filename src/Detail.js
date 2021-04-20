@@ -14,28 +14,35 @@ function Detail(props) {
 
   let addToCart = (event) => {
     event.preventDefault();
-    let apiUrl = "https://apibyashu.herokuapp.com/api/addcaketocart";
-    axios({
-      url: apiUrl,
-      method: "post",
-      headers: {
-        authtoken: localStorage.token,
-      },
-      data: { cakeid: cakedetail.cakeid,
-        name: cakedetail.name,
-        image: cakedetail.image,
-        price: cakedetail.price,
-        weight: cakedetail.weight },
-    }).then(
-      (response) => {
-        if (response) {
-          props.history.push("/cart");
+    if (!props || !props.user) {
+      alert("Please Login Before add to cart process.");
+    } else {
+      let apiUrl = "https://apibyashu.herokuapp.com/api/addcaketocart";
+      axios({
+        url: apiUrl,
+        method: "post",
+        headers: {
+          authtoken: localStorage.token,
+        },
+        data: {
+          cakeid: cakedetail.cakeid,
+          name: cakedetail.name,
+          image: cakedetail.image,
+          price: cakedetail.price,
+          weight: cakedetail.weight,
+        },
+      }).then(
+        (response) => {
+          console.log("ADD_TO_CART");
+          if (response) {
+            props.history.push("/cart");
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      );
+    }
   };
 
   useEffect(() => {
@@ -144,5 +151,9 @@ function Detail(props) {
     </div>
   );
 }
-Detail = withRouter(Detail)
-export default connect()(Detail);
+Detail = withRouter(Detail);
+export default connect(function (state, action) {
+  return {
+    user: state?.user,
+  };
+})(Detail);

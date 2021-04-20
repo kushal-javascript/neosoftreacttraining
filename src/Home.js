@@ -23,6 +23,7 @@ function Home() {
       method: "get",
     }).then(
       (response) => {
+        console.log("ALL_CAKE_DETAIL");
         setCakes(response.data.data);
         //console.log(response);
       },

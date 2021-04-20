@@ -40,7 +40,31 @@ function Cart(props) {
       );
     }
   }, []);
-  var count = 1;
+
+  let removeProduct = (event) => {
+    event.preventDefault();
+    var cakeID = event.currentTarget.getAttribute("data-cakeid");
+    var cakeEmail = event.currentTarget.getAttribute("data-email");
+    if (cakeID && cakeEmail) {
+      var token = localStorage.token;
+      axios({
+        method: "post",
+        url: "https://apibyashu.herokuapp.com/api/removecakefromcart",
+        headers: {
+          authtoken: token,
+        },
+        data: { email: cakeEmail, cakeid: cakeID },
+      }).then(
+        (response) => {
+          console.log("REMOVE_PRODUCT")
+          window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  };
   return (
     <div className="cart-detail">
       {props && props.cart ? (
@@ -87,7 +111,12 @@ function Cart(props) {
                         <td>{each.weight}</td>
                         <td>{each.price}</td>
                         <td>
-                          <button className="btn btn-danger pull-right">
+                          <button
+                            className="btn btn-danger pull-right"
+                            onClick={removeProduct}
+                            data-cakeid={each.cakeid}
+                            data-email={each.email}
+                          >
                             X
                           </button>
                         </td>
@@ -115,7 +144,9 @@ function Cart(props) {
                 </tr>
                 <tr>
                   <td colSpan="2">
-                    <Link to="/checkout/address"><button className="btn btn-primary">Checkout</button></Link>
+                    <Link to="/checkout/address">
+                      <button className="btn btn-primary">Checkout</button>
+                    </Link>
                   </td>
                 </tr>
               </tbody>

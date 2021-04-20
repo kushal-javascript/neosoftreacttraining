@@ -35,6 +35,7 @@ function Login(props) {
           localStorage.token = response.data.token
           setError("Login Success");
           //props.informlogin(response.data.name);
+          console.log("LOGIN_API");
           props.dispatch({
             type:"LOGIN",
             payload: response.data
@@ -53,6 +54,8 @@ function Login(props) {
   return (
     <div class="container">
       {/* <h3>setState method use in fucntion</h3>   */}
+      {!props && props.history.push("/")}
+      {!props.user && props.history.push("/")}
       <form style={{ width: "50%", margin: "auto" }}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -88,4 +91,8 @@ function Login(props) {
   );
 }
 Login = withRouter(Login)
-export default connect()(Login);
+export default connect(function(state,action){
+  return {
+    user:state?.user
+  }
+})(Login);
