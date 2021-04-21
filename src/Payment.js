@@ -24,8 +24,8 @@ function Payment(props) {
       style={{ marginLeft: "5%", marginRight: "5%", marginTop: "5%" }}
     >
       {!props && props.history.push("/")}
-      {!props.cart && props.history.push("/")}
-      {!props.address_data && props.history.push("/")}
+      {!props.cart && props.history.push("/cart")}
+      {!props.address_data && props.history.push("/checkout/address")}
       <h3 style={{ textAlign: "center" }}>Select Payment</h3>
       <form>
         <div className="form-check">

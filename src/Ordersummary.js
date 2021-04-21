@@ -8,9 +8,9 @@ function Ordersummary(props) {
       style={{ marginLeft: "5%", marginRight: "5%", marginTop: "5%" }}
     >
       {!props && props.history.push("/")}
-      {!props.cart && props.history.push("/")}
-      {!props.address_data && props.history.push("/")}
-      {!props.payment_data && props.history.push("/")}
+      {!props.cart && props.history.push("/cart")}
+      {!props.address_data && props.history.push("/checkout/address")}
+      {!props.payment_data && props.history.push("/checkout/payment")}
       <h3 style={{ textAlign: "center" }}>Order Summary</h3>
       <table className="table table-bordered">
         <tr>

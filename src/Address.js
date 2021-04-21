@@ -54,7 +54,8 @@ function Address(props) {
       className="shipping-address"
       style={{ marginLeft: "5%", marginRight: "5%", marginTop: "5%" }}
     >
-      {!props.cart && props.history.push("/")}
+      {!props && props.history.push("/")}
+      {!props.cart && props.history.push("/cart")}
       <h3 style={{ textAlign: "center" }}>Shipping Address</h3>
       <form>
         <div className="form-group">
