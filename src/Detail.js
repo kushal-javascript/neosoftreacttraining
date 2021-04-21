@@ -61,16 +61,15 @@ function Detail(props) {
     );
   }, []);
   return (
-    <div className="card" style={{ margin: "20px 140px" }}>
-      <div className="card-body" style={{ backgroundColor: "rgba(0,0,0,.03)" }}>
+    <div className="card-detail">
+      <div className="card-body">
         <div className="row">
           <div className="col-sm-6">
-            <div style={{ margin: "10px 60px" }}>
+            <div className="image-section">
               <img
                 src={cakedetail.image}
                 class="card-img-top"
                 alt={cakedetail.name}
-                height="700px"
               />
             </div>
           </div>

@@ -54,8 +54,8 @@ function Login(props) {
   return (
     <div class="container">
       {/* <h3>setState method use in fucntion</h3>   */}
-      {!props && props.history.push("/")}
-      {!props.user && props.history.push("/")}
+      {/* {!props && props.history.push("/")}
+      {!props.user && props.history.push("/")} */}
       <form style={{ width: "50%", margin: "auto" }}>
         <div className="form-group">
           <label htmlFor="email">Email</label>

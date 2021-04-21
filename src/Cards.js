@@ -9,12 +9,11 @@ function Cards(props) {
   };
 
   return (
-    <div className="card" style={{ width: "18rem" }} id={props.cakeid}>
+    <div className="card" id={props.cakeid}>
       <img
         src={props.cardsImage}
         className="card-img-top"
-        alt="..."
-        style={{ height: "350px" }}
+        alt={props.cardsName}
       />
       <div className="card-body">
         <h5 className="card-title">{props.cardsName}</h5>
@@ -31,12 +30,11 @@ function Cards(props) {
 
 export function CardsObject(props) {
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card">
       <img
         src={props.cardData.cardsImage}
         className="card-img-top"
-        alt="..."
-        style={{ height: "350px" }}
+        alt={props.cardData.cardsName}
       />
       <div className="card-body">
         <h5 className="card-title">{props.cardData.cardsName}</h5>

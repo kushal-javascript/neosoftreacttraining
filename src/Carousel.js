@@ -2,9 +2,6 @@ var carouselOne = "./first.jpeg";
 var carouselTwo = "./two.jpeg";
 var carouselThree = "./three.jpeg";
 
-var carouselStyle = {
-  height: "300px",
-};
 function Carousel() {
   return (
     <div
@@ -18,7 +15,6 @@ function Carousel() {
             src={carouselOne}
             className="d-block w-100"
             alt="One"
-            style={carouselStyle}
           />
         </div>
         <div className="carousel-item">
@@ -26,7 +22,6 @@ function Carousel() {
             src={carouselTwo}
             className="d-block w-100"
             alt="two"
-            style={carouselStyle}
           />
         </div>
         <div className="carousel-item">
@@ -34,7 +29,6 @@ function Carousel() {
             src={carouselThree}
             className="d-block w-100"
             alt="three"
-            style={carouselStyle}
           />
         </div>
       </div>

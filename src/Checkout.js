@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Route, useRouteMatch, withRouter } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Address from "./Address";
 import Ordersummary from "./Ordersummary";
 import Payment from "./Payment";
@@ -15,17 +15,17 @@ function Checkout(props) {
     <div className="checkout" style={{ marginTop: "3%" }}>
       <div className="row">
         <div className="col-8">
-          <ul style={{ display: "table", width: "100%", textAlign: "center" }}>
-            <Link to={url + "/address"} style={{ display: "table-cell" }}>
-              <li style={{ display: "table-cell" }}>Address</li>
-            </Link>
-            <Link to={url + "/payment"} style={{ display: "table-cell" }}>
-              <li style={{ display: "table-cell" }}>Payment</li>
-            </Link>
-            <Link to={url + "/ordersummary"} style={{ display: "table-cell" }}>
-              <li style={{ display: "table-cell" }}>Order Summary</li>
-            </Link>
-          </ul>
+          <div style={{ display: "table", width: "100%", textAlign: "center" }}>
+            <NavLink to={url + "/address"} style={{ display: "table-cell" }} activeClassName="active">
+              Address
+            </NavLink>
+            <NavLink to={url + "/payment"} style={{ display: "table-cell" }} activeClassName="active">
+              Payment
+            </NavLink>
+            <NavLink to={url + "/ordersummary"} style={{ display: "table-cell" }}activeClassName="active">
+              Order Summary
+            </NavLink>
+          </div>
           <div>
             <Route path={path + "/address"} component={Address} />
             <Route path={path + "/payment"} component={Payment} />

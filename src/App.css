@@ -36,3 +36,56 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom CSS */
+.carousel-item active img {
+  height: 300px;
+}
+.card {
+  width: 18rem;
+}
+.card .card-img-top {
+  height: 350px;
+}
+
+.card-detail {
+  margin: 20px 140px;
+}
+
+.card-detail .card-body {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.card-detail .image-section {
+  margin: 10px 60px;
+}
+
+.card-detail .image-section img {
+  height: 700px;
+}
+
+.header-class .navbar {
+  background-color: #6e716e;
+  color: #000;
+}
+
+.header-class .navbar ul {
+  float: right;
+  list-style: none;
+  display: -webkit-inline-box;
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+}
+
+.header-class .navbar ul button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+.header.content {
+  display: -webkit-box;
+  margin: 20px 30px 20px;
+}

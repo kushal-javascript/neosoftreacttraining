@@ -40,32 +40,17 @@ function HeaderSection(props) {
     <header className="header-class">
       <nav
         className="navbar navbar-expand-lg navbar-light bg-light"
-        style={{ backgroundColor: "#6e716e", color: "#000" }}
       >
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {props && props.user ? (
             <ul
               className="header links"
-              style={{
-                float: "right",
-                listStyle: "none",
-                display: "-webkit-inline-box",
-                margin: "0",
-                marginLeft: "auto",
-                padding: "0",
-              }}
             >
               <li>
                 <Link to="/">Welcome {props.user.name}</Link>&nbsp;&nbsp;
               </li>
               <li>
                 <button
-                  style={{
-                    background: "none!important",
-                    border: "none",
-                    padding: "0!important",
-                    cursor: "pointer",
-                  }}
                   onClick={logout}
                 >
                   Logout
@@ -75,14 +60,6 @@ function HeaderSection(props) {
           ) : (
             <ul
               className="header links"
-              style={{
-                float: "right",
-                listStyle: "none",
-                display: "-webkit-inline-box",
-                margin: "0",
-                marginLeft: "auto",
-                padding: "0",
-              }}
             >
               <li>
                 <Link to="/login">Sign In</Link>&nbsp;or&nbsp;
@@ -96,10 +73,6 @@ function HeaderSection(props) {
       </nav>
       <div
         className="header content"
-        style={{
-          display: "-webkit-box",
-          margin: "20px 30px 20px",
-        }}
       >
         <div className="header-logo">
           <a className="navbar-brand" href="/" style={{ padding: "0px" }}>
