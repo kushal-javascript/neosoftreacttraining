@@ -15,25 +15,24 @@ function Checkout(props) {
     <div className="checkout" style={{ marginTop: "3%" }}>
       <div className="row">
         <div className="col-12 col-lg-8">
-          <div style={{ display: "table", width: "100%", textAlign: "center" }}>
-            <NavLink
-              to={url + "/address"}
-              activeClassName="active"
-            >
-              Address
-            </NavLink>
-            <NavLink
-              to={url + "/payment"}
-              activeClassName="active"
-            >
-              Payment
-            </NavLink>
-            <NavLink
-              to={url + "/ordersummary"}
-              activeClassName="active"
-            >
-              Order Summary
-            </NavLink>
+          <div className="order-process-tab">
+            <ul className="nav nav-tabs">
+              <li className="nav-item">
+                <NavLink to={url + "/address"} className="nav-link" activeClassName="active">
+                  Address
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to={url + "/payment"} className="nav-link" activeClassName="active">
+                  Payment
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to={url + "/ordersummary"} className="nav-link" activeClassName="active">
+                  Order Summary
+                </NavLink>
+              </li>
+            </ul>
           </div>
           <div>
             <Route path={path + "/address"} component={Address} />

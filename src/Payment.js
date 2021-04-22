@@ -57,7 +57,7 @@ function Payment(props) {
             Bank Transfer
           </label>
         </div>
-        <div className="col-auto text-center">
+        <div className="col-auto text-right">
           <button
             type="submit"
             className="btn btn-primary"

@@ -116,7 +116,7 @@ function Address(props) {
             />
           </div>
         </div>
-        <div className="col-auto text-center">
+        <div className="col-auto text-right">
           <button
             type="submit"
             className="btn btn-primary"
