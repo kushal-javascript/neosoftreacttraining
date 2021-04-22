@@ -56,10 +56,10 @@ function Login(props) {
   return (
     <div className="login-page">
       {/* <h3>setState method use in fucntion</h3>   */}
-      {/* {!props && props.history.push("/")}
-      {!props.user && props.history.push("/")} */}
+      {!props && props.history.push("/")}
+      {props.user && props.history.push("/")}
       <h2 style={{textAlign:"center"}}>Customer Login</h2>
-      <form id="loginform" style={{ width: "50%" }} onSubmit={login}>
+      <form id="loginform" style={{ width: "50%" , marginLeft : "2%" }} onSubmit={login}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input

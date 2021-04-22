@@ -1,9 +1,11 @@
 import { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 class Signup extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       onlineUser: 0,
     };
@@ -75,6 +77,8 @@ class Signup extends Component {
   render() {
     return (
       <div class="sign-up-page">
+	  {!this.props && this.props.history.push("/")}
+      {this.props.user && this.props.history.push("/")}
         {/* <h3>setState method use in class</h3>   */}
         <h2 style={{ textAlign: "center" }}>Create New Customer Account</h2>
         <form style={{ width: "50%", marginLeft : "2%" }} onSubmit={this.register}>
@@ -123,4 +127,9 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+Signup = withRouter(Signup)
+export default connect(function(state,action){
+	return {
+	  user:state?.user
+	}
+  })(Signup);
