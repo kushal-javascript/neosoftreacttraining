@@ -14,7 +14,7 @@ function Checkout(props) {
   return (
     <div className="checkout" style={{ marginTop: "3%" }}>
       <div className="row">
-        <div className="col-8">
+        <div className="col-12 col-lg-8">
           <div style={{ display: "table", width: "100%", textAlign: "center" }}>
             <NavLink
               to={url + "/address"}
@@ -41,7 +41,7 @@ function Checkout(props) {
             <Route path={path + "/ordersummary"} component={Ordersummary} />
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-12 col-lg-4">
           {props && props.cart ? (
             <table
               className="table"

@@ -69,12 +69,11 @@ function Cart(props) {
     <div className="cart-detail">
       {props && props.cart ? (
         <div className="row" style={{ marginTop: "3%" }}>
-          <div className="col-9">
+          <div className="col-12 col-lg-9">
             <table
               className="table table-striped table-bordered cart-product-detail"
               id="dtBasicExample"
               cellSpacing="0"
-              style={{ width: "100%" }}
             >
               <thead>
                 <tr>
@@ -126,7 +125,7 @@ function Cart(props) {
               </tbody>
             </table>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-lg-3">
             <table className="table table-hover cart-summary">
               <thead>
                 <tr>
