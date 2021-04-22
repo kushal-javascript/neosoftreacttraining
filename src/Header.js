@@ -62,16 +62,17 @@ function HeaderSection(props) {
         </div>
       </nav>
       <div className="header content">
-        <div className="header-logo">
+        <div className="header-logo col-lg-3 col-4">
           <a className="navbar-brand" href="/" style={{ padding: "0px" }}>
             <img
               src="./logo192.png"
               style={{ width: "auto", maxWidth: "35%" }}
-              className="d-inline-block align-middle mr-2"
+              className="img-fluid img-thumbnail"
             />
           </a>
         </div>
-        <div className="header-search">
+        <div className="col-lg-5 col-1" />
+        <div className="header-search col-lg-4 col-7 d-flex flex-row-reverse">
           <form className="form-inline my-2 my-lg-0 search">
             <input
               className="form-control mr-sm-2"
