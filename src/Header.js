@@ -38,29 +38,19 @@ function HeaderSection(props) {
 
   return (
     <header className="header-class">
-      <nav
-        className="navbar navbar-expand-lg navbar-light bg-light"
-      >
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <nav className="navbar-link">
+        <div className="links" id="navbarSupportedContentData">
           {props && props.user ? (
-            <ul
-              className="header links"
-            >
+            <ul className="header links">
               <li>
                 <Link to="/">Welcome {props.user.name}</Link>&nbsp;&nbsp;
               </li>
               <li>
-                <button
-                  onClick={logout}
-                >
-                  Logout
-                </button>
+                <button onClick={logout}>Logout</button>
               </li>
             </ul>
           ) : (
-            <ul
-              className="header links"
-            >
+            <ul className="header links">
               <li>
                 <Link to="/login">Sign In</Link>&nbsp;or&nbsp;
               </li>
@@ -71,9 +61,7 @@ function HeaderSection(props) {
           )}
         </div>
       </nav>
-      <div
-        className="header content"
-      >
+      <div className="header content">
         <div className="header-logo">
           <a className="navbar-brand" href="/" style={{ padding: "0px" }}>
             <img
@@ -83,15 +71,7 @@ function HeaderSection(props) {
             />
           </a>
         </div>
-        <div
-          className="header-search"
-          style={{
-            float: "right",
-            display: "-webkit-inline-box",
-            margin: "0",
-            marginLeft: "auto",
-          }}
-        >
+        <div className="header-search">
           <form className="form-inline my-2 my-lg-0 search">
             <input
               className="form-control mr-sm-2"
@@ -108,20 +88,20 @@ function HeaderSection(props) {
                 <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
               </button>
             </Link>
+            <Link to="/cart">
+              <button className="btn my-2 my-sm-2" style={{ height: "76%" }}>
+                <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+              </button>
+            </Link>
           </form>
-          <Link to="/cart">
-            <button className="btn my-2 my-sm-2" style={{ height: "76%" }}>
-              <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-            </button>
-          </Link>
         </div>
       </div>
     </header>
   );
 }
 HeaderSection = withRouter(HeaderSection);
-export default connect(function(state,action){
+export default connect(function (state, action) {
   return {
-    user:state?.user
-  }
+    user: state?.user,
+  };
 })(HeaderSection);
