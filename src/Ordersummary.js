@@ -8,10 +8,10 @@ function Ordersummary(props) {
       style={{ marginLeft: "5%", marginRight: "5%", marginTop: "5%" }}
     >
       {!props && props.history.push("/")}
-      {!props.cart && props.history.push("/cart")}
-      {!props.address_data && props.history.push("/checkout/address")}
-      {!props.payment_data && props.history.push("/checkout/payment")}
+      {!props?.cart && props.history.push("/cart")}
+      {!props?.address_data && props.history.push("/cart")}
       <h3 style={{ textAlign: "center" }}>Order Summary</h3>
+      {props?.address_data &&
       <table className="table table-bordered">
         <tr>
           <th>Shipping Address</th>
@@ -41,11 +41,12 @@ function Ordersummary(props) {
         <tr>
           <td colSpan="2">
             <div className="col-auto text-center">
-              <button className="btn btn-primary">Place Order</button>
+              <button className="btn btn-primary" style={{ marginTop: "2%" }}>Place Order</button>
             </div>
           </td>
         </tr>
       </table>
+      }
     </div>
   );
 }

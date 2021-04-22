@@ -65,7 +65,7 @@
 }
 
 .header-class .navbar {
-  background-color: #6e716e;
+  background-color: #6e716e !important;
   color: #000;
 }
 
@@ -85,6 +85,9 @@
   cursor: pointer;
 }
 
+.header-class .navbar ul a{
+  color: #fff;
+}
 .header.content {
   display: -webkit-box;
   margin: 20px 30px 20px;

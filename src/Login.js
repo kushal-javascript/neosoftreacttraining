@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 function Login(props) {
   var user = {};
-  var [error, setError] = useState();
+  var [errors, setError] = useState();
   var [user, setUser] = useState({});
 
   let getEmail = (event) => {
@@ -23,6 +23,7 @@ function Login(props) {
   };
 
   let login = (event) => {
+    console.log(event)
     event.preventDefault();
     let apiUrl = "https://apibyashu.herokuapp.com/api/login";
     axios({
@@ -33,7 +34,7 @@ function Login(props) {
       (response) => {
         if (response.data.token) {
           localStorage.token = response.data.token
-          setError("Login Success");
+          //setError("Login Success");
           //props.informlogin(response.data.name);
           console.log("LOGIN_API");
           props.dispatch({
@@ -42,31 +43,35 @@ function Login(props) {
           })
           props.history.push("/");
         } else {
-          setError(response);
+          console.log(response.data.message);
+          setError(response.data.message);
         }
       },
       (error) => {
-        setError(error);
-        console.log(error);
+        //setError(error.data);
+        console.log(error.data);
       }
     );
   };
   return (
-    <div class="container">
+    <div className="login-page">
       {/* <h3>setState method use in fucntion</h3>   */}
       {/* {!props && props.history.push("/")}
       {!props.user && props.history.push("/")} */}
-      <form style={{ width: "50%", margin: "auto" }}>
+      <h2 style={{textAlign:"center"}}>Customer Login</h2>
+      <form id="loginform" style={{ width: "50%" }} onSubmit={login}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             className="form-control required"
             onChange={getEmail}
+            required
             name="email"
           />
-          {user && <small class="form-text text-muted">{user.email}</small>}
+          {user && <small className="form-text text-muted">{user.email}</small>}
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
@@ -75,15 +80,16 @@ function Login(props) {
             id="password"
             className="form-control required"
             onChange={getPassword}
+            required
             name="password"
           />
-          {user && <small class="form-text text-muted">{user.password}</small>}
+          {/* {user && <small className="form-text text-muted">{user.password}</small>} */}
         </div>
-        <div style={{ color: "red" }}>{error}</div>
+        <div style={{ color: "red" }}>{errors}</div>
         <div className="registration-login">
-          <Link to="/signup">Signup</Link>
+          <Link to="/signup">Create an Account</Link>
         </div>
-        <button className="btn btn-primary" onClick={login}>
+        <button type="submit" className="btn btn-primary">
           Login
         </button>
       </form>

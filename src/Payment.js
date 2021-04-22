@@ -11,11 +11,14 @@ function Payment(props) {
   let nextSummary = (event) => {
     event.preventDefault();
     console.log(payment_data);
-    props.dispatch({
-      type: "PAYMENT_DATA",
-      payload: payment_data,
-    });
-    props.history.push("/checkout/ordersummary");
+    if(payment_data){
+      props.dispatch({
+        type: "PAYMENT_DATA",
+        payload: payment_data,
+      });
+      props.history.push("/checkout/ordersummary");
+    }
+    
   };
 
   return (
@@ -25,9 +28,9 @@ function Payment(props) {
     >
       {!props && props.history.push("/")}
       {!props.cart && props.history.push("/cart")}
-      {!props.address_data && props.history.push("/checkout/address")}
+      {!props.address_data && props.history.push("/cart")}
       <h3 style={{ textAlign: "center" }}>Select Payment</h3>
-      <form>
+      <form onSubmit={nextSummary}>
         <div className="form-check">
           <input
             className="form-check-input"
@@ -35,7 +38,6 @@ function Payment(props) {
             name="payment"
             id="cod"
             value="Cash on Delivery"
-            checked
             onClick={setPayment}
           />
           <label className="form-check-label" for="cod">
@@ -57,9 +59,9 @@ function Payment(props) {
         </div>
         <div className="col-auto text-center">
           <button
-            onClick={nextSummary}
             type="submit"
             className="btn btn-primary"
+            style={{ marginTop: "2%" }}
           >
             Next
           </button>

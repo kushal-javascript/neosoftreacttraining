@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 
 function Address(props) {
   var [addressData, setAddressData] = useState({});
+  var [errors, setError] = useState({});
 
   let setFormUsername = (event) => {
     setAddressData({
@@ -42,7 +43,6 @@ function Address(props) {
 
   let nextPayment = (event) => {
     event.preventDefault();
-    console.log(addressData);
     props.dispatch({
       type: "ADDRESS_DATA",
       payload: addressData,
@@ -57,7 +57,7 @@ function Address(props) {
       {!props && props.history.push("/")}
       {!props.cart && props.history.push("/cart")}
       <h3 style={{ textAlign: "center" }}>Shipping Address</h3>
-      <form>
+      <form onSubmit={nextPayment}>
         <div className="form-group">
           <label htmlFor="formUsername">User Name</label>
           <input
@@ -68,6 +68,9 @@ function Address(props) {
             required={true}
             onChange={setFormUsername}
           />
+          {errors?.name && (
+            <div className="invalid-feedback">{errors.name}</div>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="validationTextarea">Address</label>
@@ -114,7 +117,11 @@ function Address(props) {
           </div>
         </div>
         <div className="col-auto text-center">
-          <button onClick={nextPayment} type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            style={{ marginTop: "2%" }}
+          >
             Next
           </button>
         </div>
