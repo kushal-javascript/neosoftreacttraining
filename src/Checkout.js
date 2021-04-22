@@ -18,39 +18,18 @@ function Checkout(props) {
           <div style={{ display: "table", width: "100%", textAlign: "center" }}>
             <NavLink
               to={url + "/address"}
-              style={{
-                display: "table-cell",
-                cursor: "not-allowed",
-                opacity: "0.5",
-                textDecoration: "none",
-                pointerEvents: "none",
-              }}
               activeClassName="active"
             >
               Address
             </NavLink>
             <NavLink
               to={url + "/payment"}
-              style={{
-                display: "table-cell",
-                cursor: "not-allowed",
-                opacity: "0.5",
-                textDecoration: "none",
-                pointerEvents: "none",
-              }}
               activeClassName="active"
             >
               Payment
             </NavLink>
             <NavLink
               to={url + "/ordersummary"}
-              style={{
-                display: "table-cell",
-                cursor: "not-allowed",
-                opacity: "0.5",
-                textDecoration: "none",
-                pointerEvents: "none",
-              }}
               activeClassName="active"
             >
               Order Summary

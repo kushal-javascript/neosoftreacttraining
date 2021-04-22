@@ -92,3 +92,18 @@
   display: -webkit-box;
   margin: 20px 30px 20px;
 }
+
+.checkout .col-8 a {
+  display: table-cell;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.checkout .col-8 a.active {
+  cursor: pointer;
+  opacity: 1;
+  text-decoration: auto;
+  pointer-events: visiblestroke;
+}
