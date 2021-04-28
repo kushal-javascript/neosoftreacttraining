@@ -1,6 +1,7 @@
-import {createStore} from "redux"
-import reducers from "./reducers"
+import { createStore, applyMiddleware } from "redux";
+import reducers from "./reducers";
+import { logger, CustomMiddleware } from "./CustomMiddleware";
 
-var store = createStore(reducers)
+var middleware = applyMiddleware(logger);
 
-export default store
+export default createStore(reducers, middleware);

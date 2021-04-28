@@ -21,6 +21,7 @@ import Checkout from "./Checkout";
 import axios from "axios";
 import { connect } from "react-redux";
 import mart from "./reduxstore/store";
+import Footer from "./Footer";
 
 // Heroic.comm
 // heroku.com
@@ -51,6 +52,7 @@ function App(props) {
           });
         },
         (error) => {
+          localStorage.clear();
           console.log(error);
         }
       );
@@ -77,6 +79,7 @@ function App(props) {
             </Route>
           </Switch>
         </div>
+        <Footer/>
       </Router>
     </div>
   );
