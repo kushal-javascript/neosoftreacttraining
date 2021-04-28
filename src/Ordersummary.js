@@ -2,6 +2,22 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 function Ordersummary(props) {
+  let place = (event) => {
+    props.dispatch({
+      type: "ORDER_PLACE",
+      payload: {
+        price: props.address_data.grand_total,
+        name: props.address_data.name,
+        address: props.address_data.address,
+        phone: "12312312312",
+        city: props.address_data.city,
+        pincode: props.address_data.zip,
+        cakes: props.cart,
+      },
+    });
+
+    props.history.replace("/");
+  };
   return (
     <div
       className="order-summary"
@@ -11,42 +27,48 @@ function Ordersummary(props) {
       {!props?.cart && props.history.push("/cart")}
       {!props?.address_data && props.history.push("/cart")}
       <h3 style={{ textAlign: "center" }}>Order Summary</h3>
-      {props?.address_data &&
-      <table className="table table-bordered">
-        <tr>
-          <th>Shipping Address</th>
-          <th>Billing Address</th>
-        </tr>
-        <tr>
-          <td>
-            {props.address_data.name}
-            <br />
-            {props.address_data.address},<br />
-            {props.address_data.city},<br />
-            {props.address_data.state},{props.address_data.zip}
-            <br />
-          </td>
-          <td>
-            {props.address_data.name}
-            <br />
-            {props.address_data.address},<br />
-            {props.address_data.city},<br />
-            {props.address_data.state},{props.address_data.zip}
-            <br />
-          </td>
-        </tr>
-        <tr>
-          <td colSpan="2">Payment = {props.payment_data}</td>
-        </tr>
-        <tr>
-          <td colSpan="2">
-            <div className="col-auto text-center">
-              <button className="btn btn-primary" style={{ marginTop: "2%" }}>Place Order</button>
-            </div>
-          </td>
-        </tr>
-      </table>
-      }
+      {props?.address_data && (
+        <table className="table table-bordered">
+          <tr>
+            <th>Shipping Address</th>
+            <th>Billing Address</th>
+          </tr>
+          <tr>
+            <td>
+              {props.address_data.name}
+              <br />
+              {props.address_data.address},<br />
+              {props.address_data.city},<br />
+              {props.address_data.state},{props.address_data.zip}
+              <br />
+            </td>
+            <td>
+              {props.address_data.name}
+              <br />
+              {props.address_data.address},<br />
+              {props.address_data.city},<br />
+              {props.address_data.state},{props.address_data.zip}
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="2">Payment = {props.payment_data}</td>
+          </tr>
+          <tr>
+            <td colSpan="2">
+              <div className="col-auto text-center">
+                <button
+                  className="btn btn-primary"
+                  style={{ marginTop: "2%" }}
+                  onClick={place}
+                >
+                  Place Order
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      )}
     </div>
   );
 }

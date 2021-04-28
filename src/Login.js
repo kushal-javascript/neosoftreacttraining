@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link , withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 function Login(props) {
@@ -23,7 +23,7 @@ function Login(props) {
   };
 
   let login = (event) => {
-    console.log(event)
+    console.log(event);
     event.preventDefault();
     let apiUrl = "https://apibyashu.herokuapp.com/api/login";
     axios({
@@ -33,14 +33,14 @@ function Login(props) {
     }).then(
       (response) => {
         if (response.data.token) {
-          localStorage.token = response.data.token
+          localStorage.token = response.data.token;
           //setError("Login Success");
           //props.informlogin(response.data.name);
           console.log("LOGIN_API");
           props.dispatch({
-            type:"LOGIN",
-            payload: response.data
-          })
+            type: "LOGIN",
+            payload: response.data,
+          });
           props.history.push("/");
         } else {
           console.log(response.data.message);
@@ -58,8 +58,12 @@ function Login(props) {
       {/* <h3>setState method use in fucntion</h3>   */}
       {!props && props.history.push("/")}
       {props.user && props.history.push("/")}
-      <h2 style={{textAlign:"center"}}>Customer Login</h2>
-      <form id="loginform" style={{ width: "50%" , marginLeft : "2%" }} onSubmit={login}>
+      <h2 style={{ textAlign: "center" }}>Customer Login</h2>
+      <form
+        id="loginform"
+        style={{ width: "50%", marginLeft: "2%" }}
+        onSubmit={login}
+      >
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -88,6 +92,9 @@ function Login(props) {
         <div style={{ color: "red" }}>{errors}</div>
         <div className="registration-login">
           <Link to="/signup">Create an Account</Link>
+          <div style={{ float: "right", marginBottom: "2px" }}>
+            <Link to="/forgotpassword">Forgot password?</Link>
+          </div>
         </div>
         <button type="submit" className="btn btn-primary">
           Login
@@ -96,9 +103,9 @@ function Login(props) {
     </div>
   );
 }
-Login = withRouter(Login)
-export default connect(function(state,action){
+Login = withRouter(Login);
+export default connect(function (state, action) {
   return {
-    user:state?.user
-  }
+    user: state?.user,
+  };
 })(Login);

@@ -43,6 +43,15 @@ function Address(props) {
 
   let nextPayment = (event) => {
     event.preventDefault();
+    var cart = props.cart;
+    var grand_total = 0;
+
+    cart.map((each, index) => {
+      grand_total = grand_total + each.price;
+    });
+
+    addressData.grand_total = grand_total;
+
     props.dispatch({
       type: "ADDRESS_DATA",
       payload: addressData,

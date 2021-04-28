@@ -4,6 +4,7 @@ var reducers = function (
     cart: null,
     address_data: null,
     payment_data: null,
+    get_order_detail: null,
   },
   action
 ) {
@@ -51,6 +52,18 @@ var reducers = function (
       delete state["cart"];
       delete state["address_data"];
       delete state["payment_data"];
+      delete state["get_order_detail"];
+      return state;
+    }
+
+    case "ORDER_PLACE": {
+      state = { ...state };
+      return state;
+    }
+
+    case "GET_ORDER_DETAIL": {
+      state = { ...state };
+      state["get_order_detail"] = action.payload;
       return state;
     }
 

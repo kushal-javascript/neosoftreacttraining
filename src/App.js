@@ -22,10 +22,18 @@ import axios from "axios";
 import { connect } from "react-redux";
 import mart from "./reduxstore/store";
 import Footer from "./Footer";
+import ForgotPassword from "./ForgotPassword";
+import MyOrder from "./MyOrder";
 
-// Heroic.comm
 // heroku.com
 // https://devcenter.heroku.com/articles/heroku-cli
+
+//(21-04-2021)
+//recoverpassword 
+//post {email:""}
+
+// Place order
+//var data = {price: TotalPrice,name: props.address?.name,phone: props.address?.phone,address: props.address?.address,city: props.address?.city,pincode: props.address?.pincode,cakes: props.cartDetails}
 
 function App(props) {
   var [user, setUser] = useState();
@@ -52,7 +60,9 @@ function App(props) {
           });
         },
         (error) => {
-          localStorage.clear();
+          props.dispatch({
+            type: "LOGOUT",
+          });
           console.log(error);
         }
       );
@@ -69,6 +79,8 @@ function App(props) {
             <Route exact path="/login">
               <Login informlogin={LoginDone} />
             </Route>
+            <Route exact path="/forgotpassword" component={ForgotPassword} />
+            <Route exact path="/orders" component={MyOrder} />
             <Route exact path="/signup" component={Signup} />
             <Route path="/search" component={Search} />
             <Route exact path="/cake/:cakeid" component={Detail} />
@@ -79,7 +91,7 @@ function App(props) {
             </Route>
           </Switch>
         </div>
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );

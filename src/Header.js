@@ -46,7 +46,7 @@ function HeaderSection(props) {
                 <Link to="/">Welcome {props.user.name}</Link>&nbsp;&nbsp;
               </li>
               <li>
-                <Link to="/">My Account</Link>&nbsp;&nbsp;
+                <Link to="/orders">My Orders</Link>&nbsp;&nbsp;
               </li>
               <li>
                 <button onClick={logout}>Logout</button>
