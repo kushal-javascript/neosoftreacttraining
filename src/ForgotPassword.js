@@ -19,7 +19,7 @@ function ForgotPassword(props) {
       setErrorMessage(true);
     } else {
       setErrorMessage(false);
-      let apiurl = "https://apibyashu.herokuapp.com/api/recoverpassword";
+      let apiurl = "https://apifromashu.herokuapp.com/api/recoverpassword";
       var data = {
         email,
       };

@@ -4,7 +4,7 @@ export async function OrderDetailThunk() {
   return (dispatch) => {
     axios({
       method: "post",
-      url: "https://apibyashu.herokuapp.com/api/cakeorders",
+      url: "https://apifromashu.herokuapp.com/api/cakeorders",
       headers: {
         authtoken: localStorage.token,
       },

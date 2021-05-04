@@ -14,7 +14,7 @@ var obj = {
 
 function Home() {
   let [cakes, setCakes] = useState([]);
-  let allcakeapi = "https://apibyashu.herokuapp.com/api/allcakes";
+  let allcakeapi = "https://apifromashu.herokuapp.com/api/allcakes";
   var [product, setProduct] = useState();
 
   useEffect(() => {

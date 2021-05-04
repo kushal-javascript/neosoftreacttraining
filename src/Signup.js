@@ -54,7 +54,7 @@ class Signup extends Component {
         errorMessageLogin: "Please add details",
       });
     } else {
-      let apiUrl = "https://apibyashu.herokuapp.com/api/register";
+      let apiUrl = "https://apifromashu.herokuapp.com/api/register";
       axios({
         url: apiUrl,
         method: "post",

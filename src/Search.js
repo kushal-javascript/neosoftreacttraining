@@ -12,7 +12,7 @@ function Search(props) {
   const query = params.get('q');
 
   let allcakeapi =
-    "https://apibyashu.herokuapp.com/api/searchcakes?q=" + query;
+    "https://apifromashu.herokuapp.com/api/searchcakes?q=" + query;
 
   useEffect(() => {
     axios({

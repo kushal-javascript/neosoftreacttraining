@@ -7,13 +7,14 @@ function MyOrder(props) {
     if (localStorage.token && props) {
       if (!props.getOrderDetail) {
         props.dispatch({
-          type: "GET_ORDER_DETAIL",
+          type: "GET_ORDER_DETAIL"
         });
       }
     }
   }, []);
   return (
     <div className="my-account-order">
+      <h3>My Order Detail</h3>
       {props && props.getOrderDetail ? (
         <table
           className="table table-striped table-bordered cart-product-detail"
@@ -60,6 +61,7 @@ function MyOrder(props) {
 }
 MyOrder = withRouter(MyOrder);
 export default connect(function (state, action) {
+  console.log("connect GET_ORDER_DETAIL");
   return {
     user: state?.user,
     getOrderDetail: state?.get_order_detail,

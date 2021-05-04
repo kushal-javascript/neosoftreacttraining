@@ -25,7 +25,7 @@ function Login(props) {
   let login = (event) => {
     console.log(event);
     event.preventDefault();
-    let apiUrl = "https://apibyashu.herokuapp.com/api/login";
+    let apiUrl = "https://apifromashu.herokuapp.com/api/login";
     axios({
       url: apiUrl,
       method: "post",

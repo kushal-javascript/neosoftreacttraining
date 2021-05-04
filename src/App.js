@@ -47,7 +47,7 @@ function App(props) {
       var token = localStorage.token;
       axios({
         method: "get",
-        url: "https://apibyashu.herokuapp.com/api/getuserdetails",
+        url: "https://apifromashu.herokuapp.com/api/getuserdetails",
         headers: {
           authtoken: token,
         },

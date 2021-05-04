@@ -3,8 +3,7 @@ import reducers from "./reducers";
 import { logger, CustomMiddleware } from "./CustomMiddleware";
 import createSaga from "redux-saga";
 import thunk from "redux-thunk"
-import { OrderPlaceSaga } from "./OrderPlaceSaga";
-import { OrderDetailSaga } from "./OrderDetailSaga";
+import RootSaga from "./RootSaga";
 
 var sagaMiddleware = createSaga();
 
@@ -16,5 +15,4 @@ var middleware = applyMiddleware(sagaMiddleware, thunk);
 
 export default createStore(reducers, middleware);
 
-sagaMiddleware.run(OrderPlaceSaga);
-sagaMiddleware.run(OrderDetailSaga);
+sagaMiddleware.run(RootSaga);

@@ -19,7 +19,7 @@ function Cart(props) {
       var token = localStorage.token;
       axios({
         method: "post",
-        url: "https://apibyashu.herokuapp.com/api/cakecart",
+        url: "https://apifromashu.herokuapp.com/api/cakecart",
         headers: {
           authtoken: token,
         },
@@ -49,7 +49,7 @@ function Cart(props) {
       var token = localStorage.token;
       axios({
         method: "post",
-        url: "https://apibyashu.herokuapp.com/api/removecakefromcart",
+        url: "https://apifromashu.herokuapp.com/api/removecakefromcart",
         headers: {
           authtoken: token,
         },

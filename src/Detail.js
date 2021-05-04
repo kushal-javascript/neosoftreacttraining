@@ -17,7 +17,7 @@ function Detail(props) {
     if (!props || !props.user) {
       alert("Please Login Before add to cart process.");
     } else {
-      let apiUrl = "https://apibyashu.herokuapp.com/api/addcaketocart";
+      let apiUrl = "https://apifromashu.herokuapp.com/api/addcaketocart";
       axios({
         url: apiUrl,
         method: "post",
@@ -47,7 +47,7 @@ function Detail(props) {
 
   useEffect(() => {
     let cakedetailapi =
-      "https://apibyashu.herokuapp.com/api/cake/" + params.cakeid;
+      "https://apifromashu.herokuapp.com/api/cake/" + params.cakeid;
     axios({
       method: "get",
       url: cakedetailapi,
